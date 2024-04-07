@@ -6,6 +6,7 @@ import com.mycompany.app.model.Product;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +36,17 @@ public class Main {
                                         .collect(Collectors.toList());
 
         Main.printList(filteredList);
+
+        Comparator<Person> byNameAsc = (Person o1, Person o2) -> o1.getName().compareTo(o2.getName());
+        Comparator<Person>  byNameDesc = (Person o1, Person o2) -> o2.getName().compareTo(o2.getName());
+        Comparator<Person> byBirthday = (Person o1, Person o2) -> o1.getBirthDate().compareTo(o2.getBirthDate());
+
+
+        List<Person> filteredList1 = persons.stream()
+                .sorted(byBirthday)
+                .collect(Collectors.toList());
+
+        Main.printList(filteredList1);
     }
 
     private static int getAge(LocalDate birthDate) {
