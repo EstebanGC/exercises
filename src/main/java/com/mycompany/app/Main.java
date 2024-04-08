@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
@@ -37,16 +38,39 @@ public class Main {
 
         Main.printList(filteredList);
 
+        //Sorting by birthday
         Comparator<Person> byNameAsc = (Person o1, Person o2) -> o1.getName().compareTo(o2.getName());
         Comparator<Person>  byNameDesc = (Person o1, Person o2) -> o2.getName().compareTo(o2.getName());
         Comparator<Person> byBirthday = (Person o1, Person o2) -> o1.getBirthDate().compareTo(o2.getBirthDate());
-
 
         List<Person> filteredList1 = persons.stream()
                 .sorted(byBirthday)
                 .collect(Collectors.toList());
 
         Main.printList(filteredList1);
+
+        //Matching names with "J" (param: predicate)
+        Predicate<Person> startsWithPredicate = person -> person.getName().startsWith("J");
+
+        //Evaluate the existence of an element inside a set.
+        boolean ans0 = persons.stream()
+                .anyMatch(startsWithPredicate);
+
+        boolean ans1 = persons.stream()
+                            .allMatch(startsWithPredicate);
+
+        boolean ans2 = persons.stream()
+                            .noneMatch(startsWithPredicate);
+
+        //5-limit/Skip
+        int pageNum = 1;
+        int pageSize = 2;
+        List<Person> filteredList2 = persons.stream()
+                .skip(pageNum*pageSize)
+                .limit(pageSize)
+                .collect(Collectors.toList());
+
+        Main.printList(filteredList2);
     }
 
     private static int getAge(LocalDate birthDate) {
