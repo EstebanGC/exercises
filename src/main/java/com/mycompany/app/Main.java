@@ -85,6 +85,13 @@ public class Main {
 
         DoubleSummaryStatistics statistics = products.stream()
                 .collect(Collectors.summarizingDouble(Product::getPrice));
+
+
+        Optional<Double> sum = products.stream()
+                .map(Product::getPrice)
+                .reduce(Double::sum);
+
+        System.out.println(sum.get());
     }
 
     private static int getAge(LocalDate birthDate) {
