@@ -94,6 +94,7 @@ public class Main {
         System.out.println(sum.get());
     }
 
+    //Establishing methods
     private static int getAge(LocalDate birthDate) {
         return Period.between(birthDate, LocalDate.now()).getYears();
     }
