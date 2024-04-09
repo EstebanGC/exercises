@@ -5,9 +5,7 @@ import com.mycompany.app.model.Product;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.function.Predicate;
 
@@ -71,6 +69,22 @@ public class Main {
                 .collect(Collectors.toList());
 
         Main.printList(filteredList2);
+        Map<String, List<Product>> collect1 = products.stream()
+                .filter(p -> p.getPrice() >20)
+                .collect(Collectors.groupingBy(Product::getName));
+
+        Map<String, Long>  collect2 = products.stream()
+                .collect(Collectors.groupingBy(
+                        Product::getName, Collectors.counting()
+                ));
+
+        Map<String, Double>  collect3 = products.stream().collect(Collectors.groupingBy(
+                        Product::getName,
+                        Collectors.summingDouble(Product::getPrice)
+                ));
+
+        DoubleSummaryStatistics statistics = products.stream()
+                .collect(Collectors.summarizingDouble(Product::getPrice));
     }
 
     private static int getAge(LocalDate birthDate) {
