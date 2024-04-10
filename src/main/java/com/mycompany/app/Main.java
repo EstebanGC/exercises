@@ -1,5 +1,6 @@
 package com.mycompany.app;
 
+import com.mycompany.app.generics.Generic;
 import com.mycompany.app.model.Person;
 import com.mycompany.app.model.Product;
 
@@ -102,4 +103,8 @@ public class Main {
     public static void printList(List<?> list) {
         list.forEach(System.out::println);
     }
+
+
+
+
 }
