@@ -15,5 +15,13 @@ public class CheckVsUnchecked {
         int x = 10;
         int y = 0;
         int z = x / y; // ArithmeticException
+
     }
+
+    public static void squareRoot() {
+        int x = -25;
+
+        double squareRoot = Math.sqrt(x); // ArithmeticException
+    }
+
 }
